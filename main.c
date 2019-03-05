@@ -1,18 +1,35 @@
 #include <gtk/gtk.h>
 
-static void activate(GtkApplication *app, gpointer user_data) {
-    GtkWidget *widget = gtk_application_window_new(app);
+GtkEntry *text_entry;
+GtkBox *scroll_window_box;
 
-    GtkWindow *window = GTK_WINDOW(widget);
-    gtk_window_set_title(window, "list.desktop");
-    gtk_widget_show_all(widget);
+int main(int argc, char *argv[]) {
+    gtk_init(&argc, &argv);
+
+    GtkBuilder *builder = gtk_builder_new();
+    gtk_builder_add_from_resource(builder, "/com/gmail/woodyc40/list-desktop/template.ui", NULL);
+    gtk_builder_connect_signals(builder, NULL);
+
+    text_entry = GTK_ENTRY(gtk_builder_get_object(builder, "text_entry"));
+    scroll_window_box = GTK_BOX(gtk_builder_get_object(builder, "scroll_window_box"));
+
+    GtkWidget *window = GTK_WIDGET(gtk_builder_get_object(builder, "window"));
+    g_object_unref(builder);
+
+    gtk_widget_show(window);
+    gtk_main();
+
+    return 0;
 }
 
-int main(int argc, char **argv) {
-    GtkApplication *app = gtk_application_new("org.gtk.example", G_APPLICATION_FLAGS_NONE);
-    g_signal_connect(app, "activate", G_CALLBACK(activate), NULL);
-    int status = g_application_run(G_APPLICATION(app), argc, argv);
-    g_object_unref(app);
+void quit() {
+    gtk_main_quit();
 
-    return status;
+    // TODO: Save entries as JSON
+}
+
+void add_button_clicked(GtkButton *button, gpointer user_data) {
+    gchar *text_entry_string = gtk_entry_get_text(text_entry);
+
+    // TODO: Add entry to scroll box
 }
