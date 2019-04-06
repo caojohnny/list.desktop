@@ -37,8 +37,12 @@ stuff in, click the `+` button to add. Use the checkbox to
 mark stuff done and use the middle mouse button to remove
 entries from the list. Pretty simple stuff.
 
+# Demo
+
+![Screenshot](https://i.imgur.com/WlT5Zw2.png)
+
 # Credits
 
 Built with [CLion](https://www.jetbrains.com/clion/).
 
-Uses [GTK3](https://www.gtk.org/) and [cJSON](https://github.com/DaveGamble/cJSON].
+Uses [GTK3](https://www.gtk.org/) and [cJSON](https://github.com/DaveGamble/cJSON).
