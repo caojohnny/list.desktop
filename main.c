@@ -47,7 +47,7 @@ void box_clicked_m3(GtkWidget *event_box, GdkEventButton *ev, gpointer user_data
     gtk_widget_destroy(list_box_row_widget);
 }
 
-void add_button_clicked(GtkButton *button, gpointer user_data) {
+void add_button_clicked() {
     const gchar *text_entry_string = gtk_entry_get_text(text_entry);
     if (strlen(text_entry_string) == 0) {
         gtk_entry_grab_focus_without_selecting(text_entry);
@@ -82,4 +82,19 @@ void add_button_clicked(GtkButton *button, gpointer user_data) {
 
     gtk_entry_set_text(text_entry, "");
     gtk_entry_grab_focus_without_selecting(text_entry);
+}
+
+gboolean enter_pressed(GtkWidget *widget, GdkEvent *event, gpointer user_data) {
+    gboolean text_entry_focused = gtk_widget_has_focus(GTK_WIDGET(text_entry));
+    if (!text_entry_focused) {
+        return FALSE;
+    }
+
+    GdkEventKey *event_key = (GdkEventKey *) event;
+    if (event_key->keyval != GDK_KEY_Return) {
+        return FALSE;
+    }
+
+    add_button_clicked();
+    return FALSE;
 }
