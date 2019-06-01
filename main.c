@@ -268,7 +268,7 @@ void add_button_clicked() {
 
     cJSON *entries_array = cJSON_GetObjectItem(data, "entries");
     cJSON *entry = cJSON_CreateObject();
-    cJSON_AddItemToObject(entry, "id", cJSON_CreateNumber(id));
+    cJSON_AddNumberToObject(entry, "id", id);
     cJSON_AddStringToObject(entry, "text", text_entry_string);
     cJSON_AddNumberToObject(entry, "checked", 0);
     cJSON_AddItemToArray(entries_array, entry);
