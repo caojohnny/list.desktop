@@ -14,7 +14,7 @@ a GtkCheckButton.
 # Building
 
 ``` shell
-git clone https://github.com/AgentTroll/list.desktop
+git clone https://github.com/caojohnny/list.desktop
 cd list.desktop
 mkdir build && cd build
 cmake ..
